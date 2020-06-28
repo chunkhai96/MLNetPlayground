@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.ML;
 using Multiclassification;
 
 namespace MLNetPlayground
@@ -7,16 +8,25 @@ namespace MLNetPlayground
     {
         static void Main(string[] args)
         {
-            IrisModel.TrainModel();
-            ModelInput sample = new ModelInput
+            MLContext mlContext = new MLContext();
+            IrisModel.TrainModel(mlContext);
+            ModelInput sample = new ModelInput();
+            while (true)
             {
-                SepalLength = 5.9f,
-                SepalWidth = 3.0f,
-                PetalLength = 5.4f,
-                PetalWidth = 1.8f
-            };
-            IrisModel.Predict(sample);
-            Console.ReadLine();
+                Console.WriteLine("Sepal length: ");
+                sample.SepalLength = float.Parse(Console.ReadLine());
+                Console.WriteLine("Sepal width: ");
+                sample.SepalWidth = float.Parse(Console.ReadLine());
+                Console.WriteLine("Petal length: ");
+                sample.PetalLength = float.Parse(Console.ReadLine());
+                Console.WriteLine("Petal width: ");
+                sample.PetalWidth = float.Parse(Console.ReadLine());
+
+                IrisModel.Predict(mlContext, sample);
+
+                Console.WriteLine("Enter q to exit.");
+                if (Console.ReadLine().Equals("q")) break;            
+            }
         }
     }
 }

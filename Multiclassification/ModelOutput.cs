@@ -7,10 +7,10 @@ namespace Multiclassification
     {
 
         [ColumnName("PredictedLabel")]
-        public String Prediction;
+        public uint Prediction;
 
-        [ColumnName("Prob")]
-        public float Probability;
+        [ColumnName("Type")]
+        public String Type;
 
         [ColumnName("Score")]
         public float[] Score;

@@ -17,6 +17,6 @@ namespace Multiclassification
         public float PetalWidth;
 
         [LoadColumn(4)]
-        public String FlowerType;
+        public String Type;
     }
 }
