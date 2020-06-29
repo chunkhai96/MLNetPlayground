@@ -9,7 +9,8 @@ namespace MLNetPlayground
         static void Main(string[] args)
         {
             MLContext mlContext = new MLContext();
-            IrisModel.TrainModel(mlContext);
+            IrisModel.CrossValidation(mlContext);
+            /*IrisModel.TrainModel(mlContext, mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy());
             ModelInput sample = new ModelInput();
             while (true)
             {
@@ -26,7 +27,7 @@ namespace MLNetPlayground
 
                 Console.WriteLine("Enter q to exit.");
                 if (Console.ReadLine().Equals("q")) break;            
-            }
+            }*/
         }
     }
 }
