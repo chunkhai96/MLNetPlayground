@@ -15,8 +15,12 @@ namespace Multiclassification
         static readonly string dataPath = Path.Combine(Environment.CurrentDirectory, "data", "flowers.txt");
         static readonly string modelPath = Path.Combine(Environment.CurrentDirectory, modelDir, "IrisClassificationModel.zip");
 
-        public static (String, double, ITransformer) TrainModel(MLContext mlContext, IEstimator<ITransformer> modelType, IDataView data)
+        public static (String, double, ITransformer) TrainModel(MLContext mlContext, IEstimator<ITransformer> modelType, IDataView data = null)
         {
+            if (data == null)
+            {
+                data = mlContext.Data.LoadFromTextFile<ModelInput>(dataPath, hasHeader: false, separatorChar: ',');
+            } 
             Console.WriteLine("Start Training...");
             TrainTestData splitDataView = mlContext.Data.TrainTestSplit(data, testFraction: 0.2);
 
@@ -63,6 +67,7 @@ namespace Multiclassification
 
             Console.WriteLine($"Best Model: {cvResults[0].Item1} -- Accuracy: {cvResults[0].Item2}");
 
+            // Save the best model
             SaveModel(mlContext, cvResults[0].Item3, dataView.Schema);
         }
 

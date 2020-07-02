@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.ML;
-using Multiclassification;
+//using Multiclassification;
+using MLNetPlayground.ObjectDetection;
 
 namespace MLNetPlayground
 {
@@ -9,25 +10,25 @@ namespace MLNetPlayground
         static void Main(string[] args)
         {
             MLContext mlContext = new MLContext();
-            IrisModel.CrossValidation(mlContext);
-            /*IrisModel.TrainModel(mlContext, mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy());
-            ModelInput sample = new ModelInput();
-            while (true)
-            {
-                Console.WriteLine("Sepal length: ");
-                sample.SepalLength = float.Parse(Console.ReadLine());
-                Console.WriteLine("Sepal width: ");
-                sample.SepalWidth = float.Parse(Console.ReadLine());
-                Console.WriteLine("Petal length: ");
-                sample.PetalLength = float.Parse(Console.ReadLine());
-                Console.WriteLine("Petal width: ");
-                sample.PetalWidth = float.Parse(Console.ReadLine());
+            YoloModel.Detect(mlContext);   
+            //IrisModel.CrossValidation(mlContext);
+            //ModelInput sample = new ModelInput();
+            //while (true)
+            //{
+            //    Console.WriteLine("sepal length: ");
+            //    sample.SepalLength = float.Parse(Console.ReadLine());
+            //    Console.WriteLine("sepal width: ");
+            //    sample.SepalWidth = float.Parse(Console.ReadLine());
+            //    Console.WriteLine("petal length: ");
+            //    sample.PetalLength = float.Parse(Console.ReadLine());
+            //    Console.WriteLine("petal width: ");
+            //    sample.PetalWidth = float.Parse(Console.ReadLine());
 
-                IrisModel.Predict(mlContext, sample);
+            //    IrisModel.Predict(mlContext, sample);
 
-                Console.WriteLine("Enter q to exit.");
-                if (Console.ReadLine().Equals("q")) break;            
-            }*/
+            //    Console.WriteLine("enter q to exit.");
+            //    if (Console.ReadLine().Equals("q")) break;            
+            //}
         }
     }
 }
